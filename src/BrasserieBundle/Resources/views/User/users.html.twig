@@ -1,0 +1,105 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+
+<link rel="stylesheet" href="{{ asset('css/moderator.css') }}" type="text/css" />
+
+{% endblock %}
+
+{% block body -%}
+
+<h3>Les utilisateurs</h3>
+
+    <ul>
+        <li>
+            <a href="./../register">
+                Create a new user
+            </a>
+        </li>
+    </ul>
+
+    <div class="row firstLineTable">
+
+        <strong>
+
+            <div class="col-xs-1">
+                id
+            </div>
+
+            <div class="col-xs-1">
+                username
+            </div>
+
+            <div class="col-xs-1">
+                email
+            </div>
+
+{#
+            <div class="col-xs-1">
+                mot de passe
+            </div>
+#}
+
+            <div class="col-xs-1">
+                role
+            </div>
+
+            <div class="col-xs-1">
+                activation
+            </div>
+
+        </strong>
+
+    </div>
+
+    <br>
+            
+    {% for user in users %}
+
+        <div class="row {% if loop.index is even %}rowBgEven{% else %}rowBgOdd{% endif %}">
+
+            <div class="col-xs-1">
+                <strong>{{ user.id }} </strong>
+            </div>
+
+            <div class="col-xs-1">
+                <strong>{{ user.username }} </strong>
+            </div>
+
+            <div class="col-xs-1">
+                {{ user.email }}
+            </div>
+
+{#
+            <div class="col-xs-1">
+                {{ user.password }}
+            </div>
+#}
+
+            <div class="col-xs-1">
+                {#{% if is_granted(expression('"ROLE_ADMIN" in user.roles')) %}#}
+                {% if user.hasRole("ROLE_ADMIN") %}
+                    ADMIN <br> <a href="{{ path('admin_user_degrade', { 'id': user.id }) }}">degrade</a>
+                {% else %}
+                    USER <br> <a href="{{ path('admin_user_promote', { 'id': user.id }) }}">promote</a>
+                {% endif %}
+            </div>
+
+            <div class="col-xs-1">
+                {% if user.enabled %}
+                    oui<br><a href="{{ path('admin_user_deactivate', { 'id': user.id }) }}">désactiver</a>
+                {% else %}
+                    non<br><a href="{{ path('admin_user_activate', { 'id': user.id }) }}">activer</a>
+                {% endif %}
+            </div>
+
+        </div>
+
+    {% endfor %}
+
+
+{% endblock -%}
+
+
+
+
