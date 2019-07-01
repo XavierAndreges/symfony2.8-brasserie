@@ -1,0 +1,216 @@
+body {
+}
+
+.form-horizontal .form-group {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+a {
+	text-decoration: underline;
+}
+
+h1 {
+	margin-bottom: 20px;
+}
+
+tr th {
+	padding-right: 100px;
+}
+
+.blue {
+	color: #23527c;
+}
+
+.italic {
+	font-style: italic;
+}
+
+#navigation {
+	margin-top: 15px;
+}
+
+.checkboxTags {
+	display: inline-block;
+	color: #ffffff;
+	position: relative;
+	width: 150px;
+}
+
+.labelCheckBoxTag{
+	position: absolute;
+	top:-1px;
+	left:30px;
+}
+
+.submitBtn {
+	display: block;
+	margin: 15px 0 0 10px;
+}
+
+
+.myCheckbox {
+	width: 100%;
+	display: inline-block;
+}
+
+.myCheckbox .checkbox {
+	display: inline-block;
+	margin-right: 20px;
+}
+
+/*
+input[type="checkbox"] {
+	margin-left: 10px;
+}
+
+.myCheckbox input {
+	width: 5%;
+}
+
+.myCheckbox label {
+	width: 85%;
+	margin-left:5%;
+}
+*/
+
+.formNewBrassin {
+	margin-top: 50px;
+}
+
+.sectionFormFirstChild {	
+	padding:30px 0 20px 0; 
+	border-top: none;
+}
+
+.sectionForm {
+	padding:30px 0 20px 0; 
+	border-top: dotted;
+}
+
+.addLinkCollections {
+	text-align: right;
+	margin-bottom: 30px;
+}
+
+.empatagesCollectionForm {
+	margin-top: 70px;
+}
+
+.ebulitionsCollectionForm {
+	padding: 20px 0 50px 0;
+}
+
+/************** input ***************/
+
+
+.inputFiles {
+	position: fixed;
+    top: -1000px;
+}
+
+label.myLabel input[type="file"] {
+    position: fixed;
+    top: -1000px;
+}
+
+.myLabel {
+    border: 2px solid #AAA;
+    border-radius: 4px;
+    padding: 2px 5px;
+    margin: 20px 0;
+    background: #cccccc;
+    display: inline-block;
+}
+.myLabel:hover {
+    background: #dddddd;
+}
+.myLabel:active {
+    background: #CCF;
+}
+.myLabel :invalid + span {
+    color: red;
+}
+.myLabel :valid + span {
+    color: #ffffff;
+}
+
+.delete_file {
+	position: relative;
+	display: inline-block;
+	width:100px;
+	height:80px;
+	float: left;
+	margin-right: 10px;
+}
+
+.close_cross {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	right: 5px;
+	top: 5px;
+	z-index: 10;
+}
+
+.image {
+	width:80px;
+	height:60px;
+	float: left;
+	margin-right: 1rem;
+	margin-top: 0.5rem;
+	position: relative;
+}
+
+.vignetteListe {
+	width:80px;
+	height:60px;
+	float: left;
+	margin-right: 1rem;
+	margin-top: 0.5rem;
+	position: relative;
+	background-size:100% auto;
+	background-position:center;
+	background-repeat:no-repeat;
+}
+
+.pastilleVignette {
+	display:inline-block;
+	width:10px;
+	background-color:#000000;
+	color:#ffffff;
+	position:absolute;
+	bottom:0px;
+	right:0px;
+	padding:0px;
+	font-weight:bold;
+	font-size:10px;
+	text-align:center;
+}
+
+//*************************/
+
+.firstLineTable {
+	color: blue;
+}
+
+.firstLineTable div {
+	text-align: left;
+	color: #2f85bb;
+}
+
+.rowBgEven{
+  background-color:#F1F1F1;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.rowBgOdd{
+  background-color:#ffffff;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.rowBgEven:hover, .rowBgOdd:hover {
+	background-color: #cccccc
+}

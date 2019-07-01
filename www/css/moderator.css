@@ -1,0 +1,51 @@
+.logoutBtn {
+    position: absolute;
+    top:10px;
+    right: 10px;
+}
+
+.appData {
+    display: inline-block;
+    width: 100%;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: #000000 dotted 1px;
+}
+
+.userCell {
+    display: inline-block;
+    position: relative;
+    width: 600px;
+    height: auto;
+    padding: 10px;
+    border-top: #004A62 dotted 1px;
+}
+
+.userCell:last-child {
+    border-bottom: #004A62 dotted 1px;
+}
+
+.userPicture {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+}
+
+.userInfos {
+    display: inline-block;
+    position: absolute;
+    left: 120px;
+    top: 10px;
+}
+
+.name{
+    font-weight: bold;
+}
+
+.paginatorBtn {
+    display: inline-block;
+    position: relative;
+    margin-top: 20px;
+}
