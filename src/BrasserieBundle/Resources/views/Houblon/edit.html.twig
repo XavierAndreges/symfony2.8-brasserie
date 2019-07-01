@@ -1,0 +1,141 @@
+{% extends 'BrasserieBundle:Default:baseIngredient.html.twig' %}
+
+    {% block specificProperties -%}
+
+        <div class="form-group col-sm-6">
+
+            {{ form_label(form.shortName, "Short name", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+            {{ form_errors(form.shortName) }}
+
+            <div class="col-sm-4">
+            {{ form_widget(form.shortName, {'attr': {'class': 'form-control'}}) }}
+            </div>
+
+        </div>
+
+
+        <div class="form-group col-sm-6">
+
+            {{ form_label(form.annee, "Année de récolte", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+            {{ form_errors(form.annee) }}
+
+            <div class="col-sm-4">
+            {{ form_widget(form.annee, {'attr': {'class': 'form-control'}}) }}
+            </div>
+
+        </div>
+
+
+        <div class="form-group col-sm-6">
+
+            {{ form_label(form.acideAlpha, "Taux acide alpha", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+            {{ form_errors(form.acideAlpha) }}
+
+            <div class="col-sm-4">
+            {{ form_widget(form.acideAlpha, {'attr': {'class': 'form-control'}}) }}
+            </div>
+
+        </div>
+
+
+        <div class="form-group col-sm-6">
+
+            {{ form_label(form.fonction, "Fonction", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+            {{ form_errors(form.fonction) }}
+
+            <div class="col-sm-4">
+            {{ form_widget(form.fonction, {'attr': {'class': 'myCheckbox'}}) }}
+            </div>
+
+        </div>
+
+        <div class="form-group col-sm-6">
+
+            {{ form_label(form.type, "Type", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+            {{ form_errors(form.type) }}
+
+            <div class="col-sm-4">
+            {{ form_widget(form.type, {'attr': {'class': 'form-control'}}) }}
+            </div>
+
+        </div>
+
+        <div class="form-group col-sm-6">
+
+            {{ form_label(form.pays, "Pays", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+            {{ form_errors(form.pays) }}
+
+            <div class="col-sm-4">
+            {{ form_widget(form.pays, {'attr': {'class': 'form-control'}}) }}
+            </div>
+
+        </div>
+
+        <div class="form-group col-sm-6">
+
+			<label class="col-sm-6 control-label" for="brasseriebundle_houblon_bio">Bio</label>
+
+		      {{ form_errors(form.bio) }}
+
+		      <div class="col-sm-3">
+		        {{ form_widget(form.bio, {'attr': {'class': 'form-check-input'}}) }}
+		      </div>
+
+		</div>
+
+        <div class="form-group col-sm-12">
+
+            {{ form_label(form.caracteres, "Caracteres", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+            {{ form_errors(form.caracteres) }}
+
+            <div class="col-sm-9">
+            {{ form_widget(form.caracteres, {'attr': {'class': 'myCheckbox'}}) }}
+            </div>
+
+        </div>
+
+    {% endblock %}
+
+    {% block specificProperties2 -%}
+
+        <div class="form-group col-sm-12">
+
+            {{ form_label(form.houblonsSimilaires, "Houblons similaires", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+            {{ form_errors(form.houblonsSimilaires) }}
+
+            <div class="col-sm-9">
+            {{ form_widget(form.houblonsSimilaires, {'attr': {'class': 'myCheckbox'}}) }}
+            </div>
+
+        </div>
+
+    {% endblock %}
+
+    {% block uploadedFiles -%}
+
+        <div class="row">
+            <div class="col-sm-12">
+                <label class="myLabel">
+                    <input type="file" id="brasseriebundle_houblon_uploadedFiles" name="brasseriebundle_houblon[uploadedFiles][]" multiple="multiple" class="form-control">
+                    <span>Ajouter des fichiers</span>
+                </label>
+            </div>
+        </div>
+
+    {% endblock %}
+
+    {% block backToTheList -%}
+
+        <a href="{{ path('houblon') }}">
+                Back to the list
+        </a>
+
+    {% endblock %}

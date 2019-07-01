@@ -1,0 +1,108 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Date Creation{% endblock %}
+
+{% block body -%}
+
+    <h2>Dates</h2>
+
+    <div class="well">
+
+	  	{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+            {{ form_errors(form) }}
+
+            <div class="form-group">
+
+		      {{ form_label(form.brassage, "Brassage", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+		      {{ form_errors(form.brassage) }}
+
+		      <div class="col-sm-4">
+		        {{ form_widget(form.brassage, {'attr': {'class': 'form-control'}}) }}
+		      </div>
+
+		    </div>
+
+            <div class="form-group">
+
+		      {{ form_label(form.ajoutLevure, "Ajout de la levure", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+		      {{ form_errors(form.ajoutLevure) }}
+
+		      <div class="col-sm-4">
+		        {{ form_widget(form.ajoutLevure, {'attr': {'class': 'form-control'}}) }}
+		      </div>
+
+		    </div>
+
+            <div class="form-group">
+
+		      {{ form_label(form.miseAuFroid, "Mise au froid", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+		      {{ form_errors(form.miseAuFroid) }}
+
+		      <div class="col-sm-4">
+		        {{ form_widget(form.miseAuFroid, {'attr': {'class': 'form-control'}}) }}
+		      </div>
+
+		    </div>
+
+            <div class="form-group">
+
+		      {{ form_label(form.embouteillage, "Embouteillage", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+		      {{ form_errors(form.embouteillage) }}
+
+		      <div class="col-sm-4">
+		        {{ form_widget(form.embouteillage, {'attr': {'class': 'form-control'}}) }}
+		      </div>
+
+		    </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <div class="col-sm-3">
+                </div>
+
+                <div class="col-sm-4">
+                    {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary'}}) }}
+                </div>
+
+            </div>
+
+		    
+            {{ form_row(form._token) }}
+
+        {{ form_end(form, {'render_rest': true}) }}
+
+
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('date') }}">
+                Back to the list
+            </a>
+        </li>
+    </ul>
+
+
+{% endblock %}
+
+{% block javascripts %}
+
+	<script>
+
+	$( function() {
+
+        $("#brasseriebundle_date_brassage").datepicker($.datepicker.regional['fr']);
+        $("#brasseriebundle_date_ajoutLevure").datepicker($.datepicker.regional['fr']);
+        $("#brasseriebundle_date_miseAuFroid").datepicker($.datepicker.regional['fr']);
+        $("#brasseriebundle_date_embouteillage").datepicker($.datepicker.regional['fr']);
+
+    });
+    
+    </script>
+	
+{% endblock %}

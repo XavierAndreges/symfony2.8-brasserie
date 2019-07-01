@@ -1,0 +1,229 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Brassins{% endblock %}
+
+{% block body -%}
+
+    <h1>Brassin list</h1>
+
+    <ul>
+        <li>
+            <a href="{{ path('brassin_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+
+    <div class="row firstLineTable">
+
+                <strong>
+
+                    <div class="col-xs-1">
+                        Lot (id)
+                    </div>
+
+
+                    <div class="col-xs-1">
+                        MEB
+                    </div>
+
+                    <div class="col-xs-1">
+                        Type
+                    </div>
+
+                    <div class="col-xs-1">
+                        Vol.
+                    </div>
+
+                    <div class="col-xs-1">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                Alc
+                            </div>                        
+                            <div class="col-xs-6">
+                                IBU
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xs-1">
+                        <div class="row">
+                            <div class="col-xs-8">
+                                Levure
+                            </div>                        
+                            <div class="col-xs-4">
+                                D°
+                            </div>
+                        </div>
+                    </div>
+{#
+                    <div class="col-xs-1">
+                        D° finale
+                    </div>
+#}
+                    <div class="col-xs-3">
+                        Empatage
+                        {# Grain / vol / D° #}
+                    </div>
+
+                    <div class="col-xs-2">
+                        Houblons
+                    </div>
+
+                    <div class="col-xs-1">
+                        Epices
+                    </div>
+
+                </strong>
+
+            </div>
+
+            <br>
+            
+            {% for entity in entities %}
+
+                <a href="{{ path('brassin_edit', { 'id': entity.id }) }}" class="lineTable">
+
+                    <div class="row {% if loop.index is even %}rowBgEven{% else %}rowBgOdd{% endif %}">
+
+                        <div class="col-xs-1">
+                            <strong>{{ entity.lot }} </strong> ( {{ entity.id }} )
+                        </div>
+
+                        <div class="col-xs-1">
+                            {% if entity.date and entity.date.embouteillage %}{{ entity.date.embouteillage|date('d/m/y') }}{% endif %}
+                        </div>
+
+                        <div class="col-xs-1">
+                            {{ entity.typeBiere }}
+                        </div>
+
+                        <div class="col-xs-1">
+                            {% if entity.embouteillage %}{{ entity.embouteillage.volume }} l{% endif %}
+                        </div>
+
+                        <div class="col-xs-1">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    {% if entity.alcool %}{{ entity.alcool }}%{% endif %}
+                                </div>                        
+                                <div class="col-xs-6">
+                                    {{ entity.ibu  }}
+                                </div>
+                            </div> 
+                        </div>
+
+                        <div class="col-xs-1">
+                            <div class="row">
+                                <div class="col-xs-8">
+                                    {% if entity.levure %}{{ entity.levure.nom }}{% endif %}
+                                </div>                        
+                                <div class="col-xs-4">
+                                    {% if entity.volumeDensite %}{{ entity.volumeDensite.dEmbouteillage |  slice(2) }}{% endif %}
+                                </div>
+                            </div> 
+                        </div>
+
+
+{#
+                        <div class="col-xs-1">
+                            {% if entity.volumeDensite %}{{ entity.volumeDensite.dEmbouteillage }}°{% endif %}
+                        </div>
+#}
+
+
+                        <div class="col-xs-3">
+
+                            {#
+                                {% if entity.totalGrain %}{{ entity.totalGrain }}k 
+                                /
+                                    {% if entity.volumeDensite %}{{ entity.volumeDensite.vDebutEmpatage }}L{% endif %}
+                                {% if entity.volumeDensite %}{{ entity.volumeDensite.dFinEbu }}°{% endif %}
+                                {% endif %}
+                            #}
+
+                            {% set index = 0 %}
+
+                            {% for empatage in entity.empatages %}
+
+                                {% if empatage.malt %}
+                                    {{ empatage.malt.nom }}
+                                {% else %}
+                                    {{ empatage.flocon.nom }}
+                                {% endif %}   
+
+                                {% if empatage.pourcentage %}
+                                 ({{ empatage.pourcentage }}%)
+                                {% endif %}  
+
+                                {% set index = index + 1 %}
+
+                                 {% if index < entity.empatages|length %}, {% endif %} 
+
+                            {% endfor %}
+
+
+                        </div>
+
+                        <div class="col-xs-2">
+
+                            {% set lastEbulition = "" %}
+
+                            {% for ebulition in entity.ebulitions %}                  
+
+                                {% if ebulition.houblon %}
+
+                                    {% if lastEbulition != "" and lastEbulition.duree %}
+
+                                        {% if lastEbulition.duree != ebulition.duree %} / {% else %} - {% endif %} 
+
+                                    {% endif %} 
+
+                                    {{ ebulition.houblon.shortName }}                      
+
+                                    {% set lastEbulition = ebulition %}
+
+                                {% endif %}   
+
+                            {% endfor %}
+
+                        </div>
+
+                        <div class="col-xs-1">
+
+                            {% set index = 0 %}
+                            {% set nbEpices = 0 %}
+
+                            {% for ebulition in entity.ebulitions %}   
+                                {% if ebulition.epice %}
+                                    {% set nbEpices= nbEpices + 1 %}
+                                {% endif %} 
+                            {% endfor %}   
+
+                            {% for ebulition in entity.ebulitions %}                  
+
+                                {% if ebulition.epice %}
+
+                                    {{ ebulition.epice.nom }}      
+
+                                    {% set index = index + 1 %}
+
+                                    {% if index < nbEpices %} / {% endif %}                 
+
+                                {% endif %}   
+
+                            {% endfor %}
+
+                        </div>
+
+                    </div>
+
+                </a>
+
+            {% endfor %}
+            
+            
+            <br><br><br>
+
+
+    {% endblock %}

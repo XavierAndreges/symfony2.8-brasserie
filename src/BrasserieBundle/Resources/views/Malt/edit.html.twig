@@ -1,0 +1,52 @@
+{% extends 'BrasserieBundle:Default:baseIngredient.html.twig' %}
+
+    {% block specificProperties -%}
+
+        <div class="form-group col-sm-6">
+
+            {{ form_label(form.ebc, "EBC", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+            {{ form_errors(form.ebc) }}
+
+            <div class="col-sm-4">
+            {{ form_widget(form.ebc, {'attr': {'class': 'form-control'}}) }}
+            </div>
+
+        </div>
+
+        <div class="form-group col-sm-6">
+
+            {{ form_label(form.dosageMax, "Dosage max", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+            {{ form_errors(form.dosageMax) }}
+
+            <div class="col-sm-4">
+            {{ form_widget(form.dosageMax, {'attr': {'class': 'form-control'}}) }}
+            </div>
+
+        </div>
+
+    {% endblock %}
+
+
+    {% block uploadedFiles -%}
+
+        <div class="row">
+            <div class="col-sm-12">
+                <label class="myLabel">
+                    <input type="file" id="brasseriebundle_malt_uploadedFiles" name="brasseriebundle_malt[uploadedFiles][]" multiple="multiple" class="form-control">
+                    <span>Ajouter des fichiers</span>
+                </label>
+            </div>
+        </div>
+
+    {% endblock %}
+
+    {% block backToTheList -%}
+
+        <a href="{{ path('malt') }}">
+                Back to the list
+        </a>
+
+    {% endblock %}
+            

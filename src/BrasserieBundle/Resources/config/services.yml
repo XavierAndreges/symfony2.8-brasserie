@@ -1,0 +1,13 @@
+services:
+
+    brasserie.utils:
+        class:     BrasserieBundle\Service\UtilsService
+        arguments: [@doctrine.orm.entity_manager]
+
+    brasserie.file:
+        class:     BrasserieBundle\Service\FileService
+        arguments: [@doctrine.orm.entity_manager, %file_ulpload_dir%]
+
+    brasserie.navigation:
+        class:     BrasserieBundle\Service\NavigationService
+        arguments: [@doctrine.orm.entity_manager, '@service_container']

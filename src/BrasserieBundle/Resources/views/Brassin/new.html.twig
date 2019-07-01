@@ -1,0 +1,608 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Brassin new{% endblock %}
+
+
+
+{% block body -%}
+
+
+<!--
+    <h1>Brassin creation</h1>
+-->
+
+    <div class="well formNewBrassin">
+
+        {#{{ form(form) }}#}
+
+	  	{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+{{ form_errors(form) }}
+
+<div class="row sectionFormFirstChild">
+
+		<div class="row">
+
+        <div class="form-group col-sm-6">
+
+		      {{ form_label(form.lot, "Lot", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+		      {{ form_errors(form.lot) }}
+
+		      <div class="col-sm-4">
+		        {{ form_widget(form.lot, {'attr': {'placeholder': entity.lot, 'class': 'form-control'}}) }}
+		      </div>
+
+		    </div>
+
+            <div class="form-group col-sm-6">
+
+		      {{ form_label(form.typeBiere, "Type", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+		      {{ form_errors(form.typeBiere) }}
+
+		      <div class="col-sm-4">
+		        {{ form_widget(form.typeBiere, {'attr': {'class': 'form-control'}}) }}
+		      </div>
+
+		    </div>
+
+				<div class="form-group col-sm-6">
+
+		      {{ form_label(form.alcool, "Alcool", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+		      {{ form_errors(form.alcool) }}
+
+		      <div class="col-sm-4">
+		        {{ form_widget(form.alcool, {'attr': {'class': 'form-control'}}) }}
+		      </div>
+
+		    </div>
+
+			<div class="form-group col-sm-6">
+
+		      {{ form_label(form.ibu, "IBU", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+		      {{ form_errors(form.ibu) }}
+
+		      <div class="col-sm-4">
+		        {{ form_widget(form.ibu, {'attr': {'class': 'form-control'}}) }}
+		      </div>
+
+		    </div>
+
+			<div class="form-check col-sm-6">
+
+			<div class="col-sm-6">
+			</div>
+
+			{# {{ form_label(form.vendable, "Vendable", {'label_attr': {'class': 'col-sm-6 form-check-label text-right'}}) }} #}
+
+
+		      {{ form_errors(form.vendable) }}
+
+		      <div class="col-sm-4">
+		        {{ form_widget(form.vendable, {'attr': {'class': 'form-check-input'}}) }}
+		      </div>
+
+		    </div>
+
+			<div class="form-group col-sm-6">
+
+		      {{ form_label(form.tropDeMousse, "Trop de mousse", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+		      {{ form_errors(form.tropDeMousse) }}
+
+		      <div class="col-sm-4">
+		        {{ form_widget(form.tropDeMousse, {'attr': {'class': 'form-control'}}) }}
+		      </div>
+
+		    </div>
+
+		</div>
+
+ </div>
+
+ <div class="row sectionForm">
+
+ 	<div class="row">
+
+		<div class="form-group col-sm-3">
+
+				{{ form_label(form.totalGrain, "Total grain", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+				{{ form_errors(form.totalGrain) }}
+
+				<div class="col-sm-6">
+					{{ form_widget(form.totalGrain, {'attr': {'class': 'form-control'}}) }}
+				</div>
+
+		</div>
+
+		<div class="empatagesCollectionForm">
+
+				{% for empatage in form.empatages %}
+
+					<div class="form-group col-sm-12">
+
+						<div class="form-group col-sm-3">
+
+							{{ form_label(empatage.malt, "Malt", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+
+							{{ form_errors(empatage.malt) }}
+
+							<div class="col-sm-8">
+								{{ form_widget(empatage.malt, {'attr': {'class': 'form-control'}}) }}
+							</div>
+
+						</div>
+
+
+						<div class="form-group col-sm-3">
+
+							{{ form_label(empatage.flocon, "Flocon", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+
+							{{ form_errors(empatage.flocon) }}
+
+							<div class="col-sm-8">
+								{{ form_widget(empatage.flocon, {'attr': {'class': 'form-control'}}) }}
+							</div>
+
+						</div>
+
+
+
+						<div class="form-group col-sm-3">
+
+							{{ form_label(empatage.quantite, "quantite", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+							{{ form_errors(empatage.quantite) }}
+
+							<div class="col-sm-5">
+								{{ form_widget(empatage.quantite, {'attr': {'class': 'form-control'}}) }}
+							</div>
+
+						</div>
+
+						<div class="form-group col-sm-3">
+
+							{{ form_label(empatage.pourcentage, "pourcentage", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+							{{ form_errors(empatage.pourcentage) }}
+
+							<div class="col-sm-5">
+								{{ form_widget(empatage.pourcentage, {'attr': {'class': 'form-control'}}) }}
+							</div>
+
+						</div>
+
+					</div>
+
+			{% endfor %}	
+
+		</div>
+
+	</div>
+
+ </div>
+
+
+ <div class="sectionForm">
+
+					<div class="row">
+
+							<div class="form-group col-sm-6">
+
+									{{ form_label(form.volumeDensite.vDebutEmpatage, "Volume début empatage", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+									{{ form_errors(form.volumeDensite.vDebutEmpatage) }}
+
+									<div class="col-sm-4">
+										{{ form_widget(form.volumeDensite.vDebutEmpatage, {'attr': {'class': 'form-control'}}) }}
+									</div>
+
+							</div>
+
+					</div>
+
+				<div class="row">
+
+					<div class="form-group col-sm-6">
+
+							{{ form_label(form.volumeDensite.vFinEmpatage, "Volume fin empatage", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+							{{ form_errors(form.volumeDensite.vFinEmpatage) }}
+
+							<div class="col-sm-4">
+								{{ form_widget(form.volumeDensite.vFinEmpatage, {'attr': {'class': 'form-control'}}) }}
+							</div>
+
+		      </div>
+
+					<div class="form-group col-sm-6">
+
+							{{ form_label(form.volumeDensite.dFinEmpatage, "Densité fin empatage", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+							{{ form_errors(form.volumeDensite.dFinEmpatage) }}
+
+							<div class="col-sm-4">
+								{{ form_widget(form.volumeDensite.dFinEmpatage, {'attr': {'class': 'form-control'}}) }}
+							</div>
+
+		      </div>
+
+				</div>
+
+					<div class="row">
+
+						<div class="form-group col-sm-6">
+
+								{{ form_label(form.volumeDensite.vRincage, "Volume rinçage", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+								{{ form_errors(form.volumeDensite.vRincage) }}
+
+								<div class="col-sm-4">
+									{{ form_widget(form.volumeDensite.vRincage, {'attr': {'class': 'form-control'}}) }}
+								</div>
+
+						</div>
+
+					</div>
+
+					<div class="row">
+
+					<div class="form-group col-sm-6">
+
+							{{ form_label(form.volumeDensite.vDebutEbu, "Volume début ébu", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+							{{ form_errors(form.volumeDensite.vDebutEbu) }}
+
+							<div class="col-sm-4">
+								{{ form_widget(form.volumeDensite.vDebutEbu, {'attr': {'class': 'form-control'}}) }}
+							</div>
+
+		      </div>
+
+
+					<div class="form-group col-sm-6">
+
+							{{ form_label(form.volumeDensite.dDebutEbu, "Densite début ébu", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+							{{ form_errors(form.volumeDensite.dDebutEbu) }}
+
+							<div class="col-sm-4">
+								{{ form_widget(form.volumeDensite.dDebutEbu, {'attr': {'class': 'form-control'}}) }}
+							</div>
+
+		      </div>
+
+					<div class="form-group col-sm-6">
+
+							{{ form_label(form.volumeDensite.vFinEbu, "Volume fin ébu", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+							{{ form_errors(form.volumeDensite.vFinEbu) }}
+
+							<div class="col-sm-4">
+								{{ form_widget(form.volumeDensite.vFinEbu, {'attr': {'class': 'form-control'}}) }}
+							</div>
+
+		      </div>
+
+          <div class="form-group col-sm-6">
+
+							{{ form_label(form.volumeDensite.dFinEbu, "Densite fin ébu", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+							{{ form_errors(form.volumeDensite.dFinEbu) }}
+
+							<div class="col-sm-4">
+								{{ form_widget(form.volumeDensite.dFinEbu, {'attr': {'class': 'form-control'}}) }}
+							</div>
+
+		      </div>
+
+					<div class="form-group col-sm-6">
+
+							{{ form_label(form.volumeDensite.vEmbouteillage, "Volume embouteillage", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+							{{ form_errors(form.volumeDensite.vEmbouteillage) }}
+
+							<div class="col-sm-4">
+								{{ form_widget(form.volumeDensite.vEmbouteillage, {'attr': {'class': 'form-control'}}) }}
+							</div>
+
+		      </div>
+
+					<div class="form-group col-sm-6">
+
+							{{ form_label(form.volumeDensite.dEmbouteillage, "Densite embouteillage", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+							{{ form_errors(form.volumeDensite.dEmbouteillage) }}
+
+							<div class="col-sm-4">
+								{{ form_widget(form.volumeDensite.dEmbouteillage, {'attr': {'class': 'form-control'}}) }}
+							</div>
+
+		      </div>
+
+          <div class="form-group col-sm-6">
+
+		      {{ form_label(form.volumeDensite.sucreLitre, "Qté sucre / L", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+		      {{ form_errors(form.volumeDensite.sucreLitre) }}
+
+		      <div class="col-sm-4">
+		        {{ form_widget(form.volumeDensite.sucreLitre, {'attr': {'class': 'form-control'}}) }}
+		      </div>
+
+		    </div>
+
+			</div>
+
+</div>
+
+
+ <div class="sectionForm">
+
+			<div class="row">
+
+        <div class="form-group col-sm-6">
+
+		      {{ form_label(form.date.brassage, "Date brassage", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+		      {{ form_errors(form.date.brassage) }}
+
+		      <div class="col-sm-4">
+		        {{ form_widget(form.date.brassage, {'attr': {'class': 'form-control'}}) }}
+		      </div>
+
+		    </div>
+
+        <div class="form-group col-sm-6">
+
+		      {{ form_label(form.date.embouteillage, "Date embouteillage", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+		      {{ form_errors(form.date.embouteillage) }}
+
+		      <div class="col-sm-4">
+		        {{ form_widget(form.date.embouteillage, {'attr': {'class': 'form-control'}}) }}
+		      </div>
+
+		    </div>
+
+			</div>
+
+</div>
+
+<div class="sectionForm">
+
+		<div class="ebulitionsCollectionForm">
+
+				{% for ebulition in form.ebulitions %}
+
+					<div class="form-group col-sm-12">
+
+						<div class="form-group col-sm-2">
+
+							{{ form_label(ebulition.duree, "duree", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+
+							{{ form_errors(ebulition.duree) }}
+
+							<div class="col-sm-8">
+								{{ form_widget(ebulition.duree, {'attr': {'class': 'form-control'}}) }}
+							</div>
+
+						</div>
+
+						<div class="form-group col-sm-4">
+
+							{{ form_label(ebulition.houblon, "Houblon", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+
+							{{ form_errors(ebulition.houblon) }}
+
+							<div class="col-sm-8">
+								{{ form_widget(ebulition.houblon, {'attr': {'class': 'form-control'}}) }}
+							</div>
+
+						</div>
+
+
+						<div class="form-group col-sm-4">
+
+							{{ form_label(ebulition.epice, "Epice", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+
+							{{ form_errors(ebulition.epice) }}
+
+							<div class="col-sm-8">
+								{{ form_widget(ebulition.epice, {'attr': {'class': 'form-control'}}) }}
+							</div>
+
+						</div>
+
+
+
+						<div class="form-group col-sm-2">
+
+							{{ form_label(ebulition.quantite, "grs", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+
+							{{ form_errors(ebulition.quantite) }}
+
+							<div class="col-sm-8">
+								{{ form_widget(ebulition.quantite, {'attr': {'class': 'form-control'}}) }}
+							</div>
+
+						</div>
+
+					</div>
+
+			{% endfor %}	
+
+		</div>
+
+
+
+				<div class="row">
+
+						<div class="form-group col-sm-6">
+
+							{{ form_label(form.levure, "Levure", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+							{{ form_errors(form.levure) }}
+
+							<div class="col-sm-4">
+								{{ form_widget(form.levure, {'attr': {'class': 'form-control'}}) }}
+							</div>
+
+						</div>
+
+				</div>
+
+				<div class="row">
+
+						<div class="form-group col-sm-6">
+
+							{{ form_label(form.houblonACru1, "Houblon à cru 1", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+							{{ form_errors(form.houblonACru1) }}
+
+							<div class="col-sm-4">
+								{{ form_widget(form.houblonACru1, {'attr': {'class': 'form-control'}}) }}
+							</div>
+
+						</div>
+
+
+						<div class="form-group col-sm-6">
+
+							{{ form_label(form.houblonACru2, "Houblon à cru 2", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+							{{ form_errors(form.houblonACru2) }}
+
+							<div class="col-sm-4">
+								{{ form_widget(form.houblonACru2, {'attr': {'class': 'form-control'}}) }}
+							</div>
+
+						</div>
+
+				</div>
+</div>
+
+<div class="sectionForm">
+
+		<div class="row">
+
+        <div class="form-group col-sm-6">
+
+		      {{ form_label(form.embouteillage.nb25, "Nb bouteilles 25cl", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+		      {{ form_errors(form.embouteillage.nb25) }}
+
+		      <div class="col-sm-4">
+		        {{ form_widget(form.embouteillage.nb25, {'attr': {'class': 'form-control'}}) }}
+		      </div>
+
+		    </div>
+
+        	<div class="form-group col-sm-6">
+
+		      {{ form_label(form.embouteillage.nb33, "Nb bouteilles 33cl", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+		      {{ form_errors(form.embouteillage.nb33) }}
+
+		      <div class="col-sm-4">
+		        {{ form_widget(form.embouteillage.nb33, {'attr': {'class': 'form-control'}}) }}
+		      </div>
+
+		    </div>
+
+            <div class="form-group col-sm-6">
+
+		      {{ form_label(form.embouteillage.nb66, "Nb bouteilles 66cl", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+		      {{ form_errors(form.embouteillage.nb66) }}
+
+		      <div class="col-sm-4">
+		        {{ form_widget(form.embouteillage.nb66, {'attr': {'class': 'form-control'}}) }}
+		      </div>
+
+		    </div>
+
+        <div class="form-group col-sm-6">
+
+		      {{ form_label(form.embouteillage.nb75, "Nb bouteilles 75cl", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+		      {{ form_errors(form.embouteillage.nb75) }}
+
+		      <div class="col-sm-4">
+		        {{ form_widget(form.embouteillage.nb75, {'attr': {'class': 'form-control'}}) }}
+		      </div>
+
+		    </div>
+
+		</div>
+
+</div>
+
+
+<div class="row sectionForm">
+
+		<div class="row">
+
+			<div class="form-group col-sm-12">
+
+				{{ form_label(form.commentaire, "Commentaire", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+				{{ form_errors(form.commentaire) }}
+
+				<div class="col-sm-9">
+				{{ form_widget(form.commentaire, {'attr': {'class': 'form-control'}}) }}
+				</div>
+
+			</div>
+
+            <div class="form-group">
+
+                <div class="col-sm-3">
+                </div>
+
+                <div class="col-sm-4">
+                    {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary'}}) }}
+                </div>
+
+            </div>
+
+		</div>
+
+</div>
+	    
+            {{ form_row(form._token) }}
+
+        {{ form_end(form, {'render_rest': false}) }}
+
+	</div>    
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('brassin') }}">
+            Back to the list
+        </a>
+	</li>
+	{% if status != "new" %}
+		<li>
+			<a href="{{ path('brassin_duplicate', { 'id': entity.id }) }}">
+				Duplicate
+			</a>
+		</li>
+	{% endif %}
+</ul>
+
+{% endblock %}
+
+{% block javascripts %}
+
+	<script type="text/javascript" src="{{ asset('js/newBrassin.js') }}"></script>
+
+	<script>    
+  </script>
+
+
+{% endblock %}

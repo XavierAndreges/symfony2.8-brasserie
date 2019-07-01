@@ -1,0 +1,47 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Malt creation</h1>
+
+    <div class="form-group">
+
+        {{ form_label(form.uploadedFiles, "uploadedFiles", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+        {{ form_errors(form.uploadedFiles) }}
+
+        <div id="block_image" class="col-sm-4">
+
+            {% for file in entity.files %}
+                <a class="delete_file" id="file_{{ file.id }}" href="javascript: file_delete({{ file.id }})" onclick="return confirm('are u sure?')">
+                    <img src=" {{ asset('assets/close.png') }}" class="close_cross" />
+                    <img src=" {{ asset('files/' ~ file.fileName ) }}" class="image absoluteIndex" />
+                </a>
+            {% endfor %}	
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <label class="myLabel">
+                        <input type="file" id="brasseriebundle_malt_uploadedFiles" name="brasseriebundle_malt[uploadedFiles][]" multiple="multiple" class="form-control">
+                        <span>Ajouter des fichiers</span>
+                    </label>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    {{ form(form) }}
+
+    {{ form_row(form._token) }}
+
+	{{ form_end(form, {'render_rest': false}) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('malt') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Date</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Brassage</th>
+                <td>{{ entity.brassage|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Ajoutlevure</th>
+                <td>{{ entity.ajoutLevure|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Miseaufroid</th>
+                <td>{{ entity.miseAuFroid|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Embouteillage</th>
+                <td>{{ entity.embouteillage|date('Y-m-d H:i:s') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('date') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('date_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

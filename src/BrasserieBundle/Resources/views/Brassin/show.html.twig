@@ -1,0 +1,68 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Brassin</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Lot</th>
+                <td>{{ entity.lot }}</td>
+            </tr>
+            <tr>
+                <th>Typebiere</th>
+                <td>{{ entity.typeBiere }}</td>
+            </tr>
+            <tr>
+                <th>Totalgrain</th>
+                <td>{{ entity.totalGrain }}</td>
+            </tr>
+            <tr>
+                <th>Ibu</th>
+                <td>{{ entity.ibu }}</td>
+            </tr>
+            <tr>
+                <th>Alcool</th>
+                <td>{{ entity.alcool }}</td>
+            </tr>
+            <tr>
+                <th>Total vol.</th>
+                <td>{{ entity.embouteillage.volume }} l</td>
+            </tr>
+            <tr>
+                <th>25 cl</th>
+                <td>{{ entity.embouteillage.nb25 }}</td>
+            </tr>
+            <tr>
+                <th>33 cl</th>
+                <td>{{ entity.embouteillage.nb33 }}</td>
+            </tr>
+            <tr>
+                <th>66 cl</th>
+                <td>{{ entity.embouteillage.nb66 }}</td>
+            </tr>
+            <tr>
+                <th>75 cl</th>
+                <td>{{ entity.embouteillage.nb75 }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('brassin') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('brassin_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li><a href="{{ path('brassin_delete', { 'id': entity.id }) }}" onclick="return confirm('are u sure?')">Supprimer</a></li>
+</ul>
+{% endblock %}

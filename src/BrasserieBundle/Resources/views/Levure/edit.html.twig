@@ -1,0 +1,38 @@
+{% extends 'BrasserieBundle:Default:baseIngredient.html.twig' %}
+
+{% block specificProperties -%}
+
+        <div class="form-group col-sm-12">
+
+            {{ form_label(form.styleDeBiere, "Style de bière", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+            {{ form_errors(form.styleDeBiere) }}
+
+            <div class="col-sm-9">
+            {{ form_widget(form.styleDeBiere, {'attr': {'class': 'form-control'}}) }}
+            </div>
+
+        </div>
+
+{% endblock %}
+
+{% block uploadedFiles -%}
+
+    <div class="row">
+        <div class="col-sm-12">
+            <label class="myLabel">
+                <input type="file" id="brasseriebundle_levure_uploadedFiles" name="brasseriebundle_levure[uploadedFiles][]" multiple="multiple" class="form-control">
+                <span>Ajouter des fichiers</span>
+            </label>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block backToTheList -%}
+
+    <a href="{{ path('levure') }}">
+            Back to the list
+    </a>
+
+{% endblock %}

@@ -1,0 +1,133 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+
+    <h1>edit</h1>
+
+    <div class="well row">
+
+        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+        <div class="form-group col-sm-6">
+
+            {{ form_label(form.nom, "Nom", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+            {{ form_errors(form.nom) }}
+
+            <div class="col-sm-4">
+            {{ form_widget(form.nom, {'attr': {'placeholder': entity.nom, 'class': 'form-control'}}) }}
+            </div>
+
+        </div>
+
+        <div class="form-group col-sm-6">
+
+            {{ form_label(form.quantite, "Quantité en stock", {'label_attr': {'class': 'col-sm-6 control-label'}}) }}
+
+            {{ form_errors(form.quantite) }}
+
+            <div class="col-sm-4">
+            {{ form_widget(form.quantite, {'attr': {'class': 'form-control'}}) }}
+            </div>
+
+        </div>
+
+        {% block specificProperties -%}
+
+        {% endblock %}
+
+        <div class="form-group col-sm-12">
+
+            {{ form_label(form.saveurs, "Saveurs", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+            {{ form_errors(form.saveurs) }}
+
+            <div class="col-sm-9">
+            {{ form_widget(form.saveurs, {'attr': {'class': 'myCheckbox'}}) }}
+            </div>
+
+        </div>
+
+        {% block specificProperties2 -%}
+
+        {% endblock %}
+
+        <div class="form-group col-sm-12">
+
+            {{ form_label(form.description, "Description", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+            {{ form_errors(form.description) }}
+
+            <div class="col-sm-9">
+            {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+            </div>
+
+        </div>
+
+        <div class="form-group col-sm-12">
+
+            {{ form_label(form.commentaire, "Commentaire", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+            {{ form_errors(form.commentaire) }}
+
+            <div class="col-sm-9">
+            {{ form_widget(form.commentaire, {'attr': {'class': 'form-control'}}) }}
+            </div>
+
+        </div>
+
+
+        <div class="form-group col-sm-12">
+
+            {{ form_label(form.uploadedFiles, "uploadedFiles", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+            {{ form_errors(form.uploadedFiles) }}
+
+            <div id="block_image" class="col-sm-4">
+
+                {% for file in entity.files %}
+                    <a class="delete_file" id="file_{{ file.id }}" href="javascript: file_delete({{ file.id }})" onclick="return confirm('are u sure?')">
+                        <img src=" {{ asset('assets/close.png') }}" class="close_cross" />
+                        <img src=" {{ asset('files/' ~ file.fileName ) }}" class="image absoluteIndex" />
+                    </a>
+                {% endfor %}	
+
+
+            {% block uploadedFiles -%}
+
+            {% endblock %}
+
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <div class="col-sm-3">
+            </div>
+
+            <div class="col-sm-4">
+                {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary'}}) }}
+            </div>
+
+        </div>
+
+
+        {{ form_row(form._token) }}
+
+	    {{ form_end(form, {'render_rest': false}) }}
+
+
+    </div>
+         
+
+    <ul class="record_actions">
+        <li>
+            {% block backToTheList -%}
+            {% endblock %}
+        </li>
+        <li>{{ form(delete_form) }}</li>
+    </ul>
+
+{% endblock %}
