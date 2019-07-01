@@ -1,0 +1,7 @@
+parameters:
+    database_host: localhost
+    database_port: null
+    database_name: brasserie
+    database_user: root
+    database_password: null
+    file_ulpload_dir: '%kernel.root_dir%/../web/files'

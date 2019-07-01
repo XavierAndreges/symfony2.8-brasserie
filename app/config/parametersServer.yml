@@ -1,0 +1,7 @@
+parameters:
+    database_host: lajouquahtandrej.mysql.db
+    database_port: null
+    database_name: lajouquahtandrej
+    database_user: lajouquahtandrej
+    database_password: QQQ67gvc
+    file_ulpload_dir: '%kernel.root_dir%/../www/files'

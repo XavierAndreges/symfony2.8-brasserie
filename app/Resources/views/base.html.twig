@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=0.1, maximum-scale=5.0, user-scalable=yes">
+        <meta charset="UTF-8" />
+
+        <title>
+        {% block title %}{% endblock %}
+        </title>
+
+        {% block stylesheets %}{% endblock %}
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        
+        <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}" type="text/css" />
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" type="text/css" />
+        <link rel="stylesheet" href="{{ asset('css/custom.css') }}" type="text/css" />
+    </head>
+
+
+    <body class="container">
+
+        <div id="menu">
+
+            
+            <a href="{{ path('brassin') }}">Brassins</a>
+            {# #}            
+             --- 
+            <a href="{{ path('malt') }}">Malts</a>
+            |
+            <a href="{{ path('houblon') }}">Houblons</a>
+            | 
+            <a href="{{ path('levure') }}">Levures</a>
+            |
+            <a href="{{ path('epice') }}">Epices</a>
+            |
+            <a href="{{ path('flocon') }}">Flocons</a>
+             --- 
+            <a href="{{ path('typebiere') }}">Types Bière</a>
+            |
+            <a href="{{ path('saveur') }}">Saveurs</a>
+            | 
+            <a href="{{ path('caractere') }}">Caractères</a>
+            |
+            <a href="{{ path('pays') }}">Pays</a>
+            --- 
+            |
+            <a href="{{ path('admin_users') }}">Utilisateurs</a>
+            --- 
+           <a href="{{ path('logout') }} ">Deconnexion</a>
+           
+           
+            
+        </div>
+
+        <div id="navigation">
+
+            {% if NavigationService.showDetailItemNavigation() %}
+
+                {% set idPrev = NavigationService.getPreviousId(entity, ids) %}
+                {% if  idPrev != null %}
+                    << <a href="{{ path(app.request.attributes.get('_route'), { 'id': idPrev }) }}">Précédant</a> <<
+                {% endif %}
+
+                 {{ app.request.attributes.get('_route') }}
+
+                {% set idNext = NavigationService.getNextId(entity, ids) %}
+                {% if  idNext != null %}
+                     >> <a href="{{ path(app.request.attributes.get('_route'), { 'id': idNext }) }}">Suivant</a> >> 
+                {% endif %}
+
+            {% endif %}
+
+        </div>
+
+        {% block body %}{% endblock %}
+
+        
+
+    </body>
+
+        <script type="text/javascript" src="{{ asset('js/spinner.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/jquery-ui.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/datePikcker-lang.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/form.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+
+
+        {% block javascripts %}{% endblock %}
+
+</html>
